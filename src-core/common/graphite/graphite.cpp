@@ -30,13 +30,10 @@ namespace {
     std::thread g_worker;
     std::atomic<bool> g_running{false};
 
-    // Internal helpers
-    void log_debug(const char *fmt, ...) {
-        if (!g_debug) return;
-        va_list ap;
-        va_start(ap, fmt);
-        vfprintf(stderr, fmt, ap);
-        va_end(ap);
+    void log_debug(const std::string &msg) {
+        if (g_debug) {
+            fprintf(stderr, "%s", msg.c_str());
+        }
     }
 
     int connect_graphite_unlocked() {
@@ -67,7 +64,7 @@ namespace {
         (void)::setsockopt(fd, SOL_SOCKET, SO_KEEPALIVE, &opt, sizeof(opt));
 
         g_sockfd = fd;
-        log_debug("graphite: connected to %s:%d\n", g_server.c_str(), g_port);
+        log_debug("graphite: connected to " + g_server + ":" + std::to_string(g_port) + "\n");
         return g_sockfd;
     }
 
