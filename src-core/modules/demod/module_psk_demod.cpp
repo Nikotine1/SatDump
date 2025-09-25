@@ -3,7 +3,7 @@
 #include "logger.h"
 #include "imgui/imgui.h"
 
-#include "graphite/graphite.h"
+#include "common/graphite/graphite.h"
 
 namespace demod
 {

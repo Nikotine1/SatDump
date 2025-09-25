@@ -1,7 +1,7 @@
 #include "object_tracker.h"
 #include "common/utils.h"
 
-#include "graphite/graphite.h"
+#include "common/graphite/graphite.h"
 
 namespace satdump
 {

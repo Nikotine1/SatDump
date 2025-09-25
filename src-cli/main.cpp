@@ -10,7 +10,7 @@
 
 #include "project/project.h"
 
-#include "graphite/graphite.h"
+#include "common/graphite/graphite.h"
 
 int main(int argc, char *argv[])
 {
