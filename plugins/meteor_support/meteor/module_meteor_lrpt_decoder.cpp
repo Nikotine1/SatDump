@@ -335,6 +335,9 @@ namespace meteor
                     lastTime = time(NULL);
                     std::string lock_state = locked ? "SYNCED" : "NOSYNC";
                     logger->info("Progress " + std::to_string(round(((double)progress / (double)filesize) * 1000.0) / 10.0) + "%%, Viterbi BER : " + std::to_string(viterbi->ber() * 100) + "%%, Lock : " + lock_state);
+                    send_to_graphite("satdump.meteor_lrpt.viterbi_state " + viterbi_state + " " + std::to_string(time(NULL)) + "\n");
+                    send_to_graphite("satdump.meteor_lrpt.viterbi_ber " + std::to_string(viterbi_ber) + " " + std::to_string(time(NULL)) + "\n");
+                    send_to_graphite("satdump.meteor_lrpt.deframer_state " + deframer_state + " " + std::to_string(time(NULL)) + "\n");
                 }
             }
         }
