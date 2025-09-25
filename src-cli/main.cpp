@@ -18,7 +18,7 @@ int main(int argc, char *argv[])
     initLogger();
 
     set_graphite_server("10.25.9.5", 2003);
-    set_graphite_debug(false);
+    set_graphite_debug(true);
 
     if (argc < 2)
     {
