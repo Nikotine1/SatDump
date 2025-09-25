@@ -19,6 +19,7 @@ int main(int argc, char *argv[])
 
     set_graphite_server("10.25.9.5", 2003);
     set_graphite_debug(true);
+    graphite_start();
 
     if (argc < 2)
     {
@@ -81,6 +82,8 @@ int main(int argc, char *argv[])
         if (ret != 0)
             return ret;
     }
+
+    graphite_close();
 
     logger->info("Done! Goodbye");
 }
