@@ -83,7 +83,7 @@ int main(int argc, char *argv[])
             return ret;
     }
 
-    graphite_close();
+    graphite_stop();
 
     logger->info("Done! Goodbye");
 }
