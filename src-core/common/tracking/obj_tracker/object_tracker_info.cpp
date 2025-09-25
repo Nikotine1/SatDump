@@ -25,6 +25,7 @@ namespace satdump
 
             send_to_graphite("satdump.object_tracker.sat_current_az " + std::to_string(sat_current_pos.az) + " " + std::to_string(time(NULL)) + "\n");
             send_to_graphite("satdump.object_tracker.sat_current_el " + std::to_string(sat_current_pos.el) + " " + std::to_string(time(NULL)) + "\n");
+            send_to_graphite("satdump.object_tracker.object_name " + obj_name + " " + std::to_string(time(NULL)) + "\n");
         }
 
         v["next_aos_time"] = next_aos_time;
