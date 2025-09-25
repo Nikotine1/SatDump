@@ -10,10 +10,15 @@
 
 #include "project/project.h"
 
+#include "graphite/graphite.h"
+
 int main(int argc, char *argv[])
 {
     // Init logger
     initLogger();
+
+    set_graphite_server("10.25.9.5", 2003);
+    set_graphite_debug(false);
 
     if (argc < 2)
     {

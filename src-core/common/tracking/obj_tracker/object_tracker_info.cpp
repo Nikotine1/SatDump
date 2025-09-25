@@ -1,6 +1,8 @@
 #include "object_tracker.h"
 #include "common/utils.h"
 
+#include "graphite/graphite.h"
+
 namespace satdump
 {
     nlohmann::json ObjectTracker::getStatus()
@@ -20,6 +22,9 @@ namespace satdump
             v["sat_azimuth_rate"] = satellite_observation_pos.azimuth_rate * RAD_TO_DEG;
             v["sat_elevation_rate"] = satellite_observation_pos.elevation_rate * RAD_TO_DEG;
             v["sat_current_range"] = satellite_observation_pos.range;
+
+            send_to_graphite("satdump.object_tracker.sat_current_az " + std::to_string(sat_current_pos.az) + " " + std::to_string(time(NULL)) + "\n");
+            send_to_graphite("satdump.object_tracker.sat_current_el " + std::to_string(sat_current_pos.el) + " " + std::to_string(time(NULL)) + "\n");
         }
 
         v["next_aos_time"] = next_aos_time;

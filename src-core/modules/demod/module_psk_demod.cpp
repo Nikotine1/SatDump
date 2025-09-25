@@ -3,6 +3,8 @@
 #include "logger.h"
 #include "imgui/imgui.h"
 
+#include "graphite/graphite.h"
+
 namespace demod
 {
     PSKDemodModule::PSKDemodModule(std::string input_file, std::string output_file_hint, nlohmann::json parameters) : BaseDemodModule(input_file, output_file_hint, parameters)
@@ -229,6 +231,8 @@ namespace demod
             {
                 lastTime = time(NULL);
                 logger->info("Progress " + std::to_string(round(((double)progress / (double)filesize) * 1000.0) / 10.0) + "%%, SNR : " + std::to_string(snr) + "dB," + " Peak SNR: " + std::to_string(peak_snr) + "dB");
+                send_to_graphite("satdump.psk_demod.snr " + std::to_string(snr) + " " + std::to_string(time(NULL)) + "\n");
+                send_to_graphite("satdump.psk_demod.peak_snr " + std::to_string(peak_snr) + " " + std::to_string(time(NULL)) + "\n");
             }
         }
 
