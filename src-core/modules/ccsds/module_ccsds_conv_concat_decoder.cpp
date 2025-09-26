@@ -5,6 +5,8 @@
 #include "common/codings/randomization.h"
 #include "core/exception.h"
 
+#include "common/graphite/graphite.h"
+
 // Return filesize
 uint64_t getFilesize(std::string filepath);
 

@@ -9,8 +9,6 @@
 #include "common/codings/reedsolomon/reedsolomon.h"
 #include "deint.h"
 
-#include "common/graphite/graphite.h"
-
 #define BUFFER_SIZE 8192
 #define FRAME_SIZE 1024
 #define ENCODED_FRAME_SIZE 1024 * 8 * 2
