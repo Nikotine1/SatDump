@@ -17,6 +17,8 @@
 #include "nlohmann/json_utils.h"
 #include "msumr_tlm.h"
 
+#include "common/graphite/graphite.h"
+
 #define BUFFER_SIZE 8192
 
 namespace meteor
@@ -235,6 +237,8 @@ namespace meteor
                 sat_name = "METEOR-M2-3";
             else if (msumr_serial_number == 4)
                 sat_name = "METEOR-M2-4";
+
+            send_to_graphite("satdump.meteor_msumr_lrpt.sat_name " + sat_name + " " + std::to_string(time(NULL)) + "\n");
 
             int norad = 0;
             if (msumr_serial_number == 0)
