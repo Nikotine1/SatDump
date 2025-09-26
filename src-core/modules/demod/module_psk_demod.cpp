@@ -231,8 +231,8 @@ namespace demod
             {
                 lastTime = time(NULL);
                 logger->info("Progress " + std::to_string(round(((double)progress / (double)filesize) * 1000.0) / 10.0) + "%%, SNR : " + std::to_string(snr) + "dB," + " Peak SNR: " + std::to_string(peak_snr) + "dB");
-                send_to_graphite("satdump.psk_demod.snr " + std::to_string(snr) + " " + std::to_string(time(NULL)) + "\n");
-                send_to_graphite("satdump.psk_demod.peak_snr " + std::to_string(peak_snr) + " " + std::to_string(time(NULL)) + "\n");
+                send_to_graphite(std::string("satdump.psk_demod.snr ") + std::to_string(snr) + " " + std::to_string(time(NULL)) + "\n");
+                send_to_graphite(std::string("satdump.psk_demod.peak_snr ") + std::to_string(peak_snr) + " " + std::to_string(time(NULL)) + "\n");
             }
         }
 

@@ -57,8 +57,8 @@ namespace satdump
                     sat_current_pos.az = satellite_observation_pos.azimuth * RAD_TO_DEG;
                     sat_current_pos.el = satellite_observation_pos.elevation * RAD_TO_DEG;
 
-                    send_to_graphite("satdump.object_tracker.sat_current_az " + std::to_string(sat_current_pos.az) + " " + std::to_string(time(NULL)) + "\n");
-                    send_to_graphite("satdump.object_tracker.sat_current_el " + std::to_string(sat_current_pos.el) + " " + std::to_string(time(NULL)) + "\n");
+                    send_to_graphite(std::string("satdump.object_tracker.sat_current_az ") + std::to_string(sat_current_pos.az) + " " + std::to_string(time(NULL)) + "\n");
+                    send_to_graphite(std::string("satdump.object_tracker.sat_current_el ") + std::to_string(sat_current_pos.el) + " " + std::to_string(time(NULL)) + "\n");
                 }
             }
 

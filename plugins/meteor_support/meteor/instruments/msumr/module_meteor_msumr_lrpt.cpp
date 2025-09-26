@@ -238,7 +238,7 @@ namespace meteor
             else if (msumr_serial_number == 4)
                 sat_name = "METEOR-M2-4";
 
-            send_to_graphite("satdump.meteor_msumr_lrpt.sat_name " + sat_name + " " + std::to_string(time(NULL)) + "\n");
+            send_to_graphite(std::string("satdump.meteor_msumr_lrpt.sat_name ") + sat_name + " " + std::to_string(time(NULL)) + "\n");
 
             int norad = 0;
             if (msumr_serial_number == 0)
