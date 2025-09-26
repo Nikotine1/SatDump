@@ -241,9 +241,6 @@ namespace meteor
                     std::string viterbi_state = viterbi_lock == 0 ? "NOSYNC" : "SYNCED";
                     std::string deframer_state = deframer->getState() == deframer->STATE_NOSYNC ? "NOSYNC" : (deframer->getState() == deframer->STATE_SYNCING ? "SYNCING" : "SYNCED");
                     logger->info("Progress " + std::to_string(round(((double)progress / (double)filesize) * 1000.0) / 10.0) + "%%, Viterbi : " + viterbi_state + " BER : " + std::to_string(viterbi_ber) + ", Deframer : " + deframer_state);
-                    send_to_graphite("satdump.meteor_lrpt.viterbi_state " + viterbi_state + " " + std::to_string(time(NULL)) + "\n");
-                    send_to_graphite("satdump.meteor_lrpt.viterbi_ber " + std::to_string(viterbi_ber) + " " + std::to_string(time(NULL)) + "\n");
-                    send_to_graphite("satdump.meteor_lrpt.deframer_state " + deframer_state + " " + std::to_string(time(NULL)) + "\n");
                 }
             }
 
