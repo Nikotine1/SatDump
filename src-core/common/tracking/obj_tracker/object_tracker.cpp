@@ -4,6 +4,8 @@
 #include "core/plugin.h"
 #include "common/utils.h"
 
+#include "common/graphite/graphite.h"
+
 namespace satdump
 {
     ObjectTracker::ObjectTracker(bool is_gui) : is_gui(is_gui)
@@ -29,7 +31,7 @@ namespace satdump
                                                             satoptions.clear();
                                                             for (auto &tle : *tle_registry)
                                                                 satoptions.push_back(tle.name);
-                                                                
+
                                                             general_mutex.unlock(); });
 
         // Start threads
@@ -94,6 +96,7 @@ namespace satdump
                 {
                     tracking_mode = TRACKING_SATELLITE;
                     current_satellite_id = i;
+                    send_to_graphite(std::string("satdump.object_tracker.current_satellite_id ") + std::to_string(current_satellite_id) + " " + std::to_string(time(NULL)) + "\n");
                     break;
                 }
             }
