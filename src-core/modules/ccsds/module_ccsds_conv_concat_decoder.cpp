@@ -244,11 +244,16 @@ namespace ccsds
             {
                 lastTime = time(NULL);
                 std::string viterbi_state = viterbi_lock == 0 ? "NOSYNC" : "SYNCED";
+                int viterbi_state_val = (viterbi_lock == 0 ? 0 : 1);
                 std::string deframer_state = deframer->getState() == deframer->STATE_NOSYNC ? "NOSYNC" : (deframer->getState() == deframer->STATE_SYNCING ? "SYNCING" : "SYNCED");
+                int deframer_state_val =
+                    deframer->getState() == deframer->STATE_NOSYNC  ? 0 :
+                    deframer->getState() == deframer->STATE_SYNCING ? 1 :
+                                                                      2 ;
                 logger->info("Progress " + std::to_string(round(((double)progress / (double)filesize) * 1000.0f) / 10.0f) + "%%, Viterbi : " + viterbi_state + " BER : " + std::to_string(viterbi_ber) + ", Deframer : " + deframer_state);
-                send_to_graphite(std::string("satdump.meteor_lrpt.viterbi_state ") + viterbi_state + " " + std::to_string(time(NULL)) + "\n");
+                send_to_graphite(std::string("satdump.meteor_lrpt.viterbi_state ") + std::to_string(viterbi_state_val) + " " + std::to_string(time(NULL)) + "\n");
                 send_to_graphite(std::string("satdump.meteor_lrpt.viterbi_ber ") + std::to_string(viterbi_ber) + " " + std::to_string(time(NULL)) + "\n");
-                send_to_graphite(std::string("satdump.meteor_lrpt.deframer_state ") + deframer_state + " " + std::to_string(time(NULL)) + "\n");
+                send_to_graphite(std::string("satdump.meteor_lrpt.deframer_state ") + std::to_string(deframer_state_val) + " " + std::to_string(time(NULL)) + "\n");
             }
         }
 
